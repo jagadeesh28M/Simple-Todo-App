@@ -29,6 +29,7 @@ export function CreateTodo({ setNewTodoAdded }) {
       <input
         type="text"
         placeholder="title"
+        value={title}
         className="p-3 m-3 rounded border-2 border-gray-300 text-red-600"
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -36,6 +37,7 @@ export function CreateTodo({ setNewTodoAdded }) {
       <br />
       <input
         type="text"
+        value={description}
         placeholder="description"
         className="p-3 m-3 rounded border-2 border-gray-300"
         onChange={(e) => setDescription(e.target.value)}
