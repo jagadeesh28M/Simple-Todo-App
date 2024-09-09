@@ -19,6 +19,8 @@ export function CreateTodo({ setNewTodoAdded }) {
       await res.json();
       // Notify the parent that a new todo has been added
       setNewTodoAdded((prev) => !prev); // Toggle the state
+      setTitle("");
+      setDescription("");
     });
   };
 
