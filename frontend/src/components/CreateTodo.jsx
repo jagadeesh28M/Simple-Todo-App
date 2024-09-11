@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 export function CreateTodo({ setNewTodoAdded }) {
@@ -5,23 +6,18 @@ export function CreateTodo({ setNewTodoAdded }) {
   const [description, setDescription] = useState("");
 
   // Function to handle adding a todo
-  const handleAddTodo = () => {
-    fetch("http://localhost:3000/todo", {
-      method: "POST",
-      body: JSON.stringify({
+  const handleAddTodo = async () => {
+    try {
+      await axios.post("http://localhost:3000/todo", {
         title: title,
         description: description,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(async (res) => {
-      await res.json();
-      // Notify the parent that a new todo has been added
-      setNewTodoAdded((prev) => !prev); // Toggle the state
+      });
+      setNewTodoAdded((prev) => !prev);
       setTitle("");
       setDescription("");
-    });
+    } catch (err) {
+      console.error("Error adding todo:", err);
+    }
   };
 
   return (
